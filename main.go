@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"embed"
 	"github.com/mpetavy/common"
 	"os"
 	"time"
@@ -9,8 +9,11 @@ import (
 
 // install node module "hl7-standard" per "npm install -g hl7-standard" or local !DebugError(err)
 
+//go:embed go.mod
+var resources embed.FS
+
 func init() {
-	common.Init("test", "", "", "", "2018", "test", "mpetavy", fmt.Sprintf("https://github.com/mpetavy/%s", common.Title()), common.APACHE, nil, nil, nil, run, 0)
+	common.Init("", "", "", "", "test", "", "", "", &resources, nil, nil, run, 0)
 }
 
 func run() error {
